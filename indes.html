@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with iammafah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0c2e 0%, #1a1a3e 50%, #0f0f23 100%);
+            color: #e0e0ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px 20px;
+        }
+
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-photo-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin-bottom: 20px;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(45deg, #00d4ff, #6a00ff, #ff00cc) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 4px;
+            animation: borderRotate 8s linear infinite;
+        }
+
+        .profile-photo::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #00d4ff, #6a00ff, #ff00cc);
+            border-radius: 50%;
+            z-index: -1;
+            animation: borderRotate 8s linear infinite;
+        }
+
+        .profile-name {
+            font-size: 3rem;
+            background: linear-gradient(90deg, #00d4ff, #6a00ff, #ff00cc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(106, 0, 255, 0.5);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            color: #a0a0ff;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .social-card {
+            background: rgba(20, 20, 50, 0.6);
+            border-radius: 20px;
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 100, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #00d4ff, #6a00ff);
+        }
+
+        .social-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(106, 0, 255, 0.4);
+            border-color: rgba(100, 100, 255, 0.5);
+        }
+
+        .social-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-card:hover .social-icon {
+            transform: scale(1.1);
+        }
+
+        .instagram .social-icon {
+            color: #E1306C;
+            text-shadow: 0 0 20px rgba(225, 48, 108, 0.7);
+        }
+
+        .youtube .social-icon {
+            color: #FF0000;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+        }
+
+        .twitter .social-icon {
+            color: #1DA1F2;
+            text-shadow: 0 0 20px rgba(29, 161, 242, 0.7);
+        }
+
+        .linkedin .social-icon {
+            color: #0077B5;
+            text-shadow: 0 0 20px rgba(0, 119, 181, 0.7);
+        }
+
+        .social-name {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .social-desc {
+            color: #b0b0ff;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(100, 100, 255, 0.2);
+            color: #e0e0ff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(100, 100, 255, 0.4);
+        }
+
+        .social-card:hover .social-link {
+            background: rgba(100, 100, 255, 0.4);
+            box-shadow: 0 0 15px rgba(100, 100, 255, 0.5);
+        }
+
+        .footer {
+            margin-top: 60px;
+            color: #8080cc;
+            font-size: 0.9rem;
+        }
+
+        /* Background elements for futuristic feel */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .bg-1 {
+            width: 300px;
+            height: 300px;
+            background: #00d4ff;
+            top: 10%;
+            left: 5%;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .bg-2 {
+            width: 200px;
+            height: 200px;
+            background: #6a00ff;
+            bottom: 10%;
+            right: 10%;
+            animation: float 12s infinite ease-in-out reverse;
+        }
+
+        .bg-3 {
+            width: 150px;
+            height: 150px;
+            background: #ff00cc;
+            top: 50%;
+            left: 80%;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+            }
+        }
+
+        @keyframes borderRotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-name {
+                font-size: 2.5rem;
+            }
+            
+            .profile-title {
+                font-size: 1rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .social-icon {
+                font-size: 4rem;
+            }
+            
+            .social-name {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-name {
+                font-size: 2rem;
+            }
+            
+            .profile-photo-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .social-icon {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-element bg-1"></div>
+    <div class="bg-element bg-2"></div>
+    <div class="bg-element bg-3"></div>
+    
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-photo-container">
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="iammafah" class="profile-photo">
+            </div>
+            <h1 class="profile-name">iammafah</h1>
+            <p class="profile-title">Digital Creator & Tech Enthusiast</p>
+        </div>
+        
+        <div class="social-grid">
+            <div class="social-card instagram">
+                <i class="fab fa-instagram social-icon"></i>
+                <h3 class="social-name">Instagram</h3>
+                <p class="social-desc">Follow for behind-the-scenes content and daily updates</p>
+                <a href="https://instagram.com/iammafah" class="social-link" target="_blank">Visit Profile</a>
+            </div>
+            
+            <div class="social-card linkedin">
+                <i class="fab fa-linkedin-in social-icon"></i>
+                <h3 class="social-name">LinkedIn</h3>
+                <p class="social-desc">Connect professionally and explore career insights</p>
+                <a href="https://www.linkedin.com/in/iammafah/" class="social-link" target="_blank">Visit Profile</a>
+            </div>
+            
+            <div class="social-card youtube">
+                <i class="fab fa-youtube social-icon"></i>
+                <h3 class="social-name">YouTube</h3>
+                <p class="social-desc">Subscribe for tutorials, reviews, and tech content</p>
+                <a href="https://www.youtube.com/@iammafah/featured" class="social-link" target="_blank">Visit Channel</a>
+            </div>
+            
+            <div class="social-card twitter">
+                <i class="fab fa-twitter social-icon"></i>
+                <h3 class="social-name">Twitter</h3>
+                <p class="social-desc">Join the conversation with quick thoughts and updates</p>
+                <a href="https://x.com/iammafah" class="social-link" target="_blank">Visit Profile</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Designed by iammafah 2025</p>
+        </div>
+    </div>
+
+    <script>
+        // Add subtle animation to icons on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const icons = document.querySelectorAll('.social-icon');
+            icons.forEach((icon, index) => {
+                setTimeout(() => {
+                    icon.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        icon.style.transform = 'scale(1)';
+                    }, 300);
+                }, index * 200);
+            });
+            
+            // Add photo hover effect
+            const profilePhoto = document.querySelector('.profile-photo');
+            profilePhoto.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            profilePhoto.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
